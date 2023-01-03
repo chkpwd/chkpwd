@@ -1,6 +1,8 @@
 # Hello There!
-I am a skilled systems administrator and IT support professional with expertise in networking, configurations, installations, automation/scripting, and problem-solving. My areas of specialization include:
+
+I am a horrible code writer.
 
 In my free time, I enjoy basketball, reading, and TV shows.
 
-# Steam 
+# Steam
+You can also find me on [Steam.]https://steamcommunity.com/id/MentalityKing/.
