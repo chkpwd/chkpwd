@@ -1,6 +1,6 @@
 # Hello There!
 
-I am a horrible code writer.
+I am a code writer trying his best, please don't take in any of my code as gospel..
 
 In my free time, I enjoy basketball, reading, and TV shows.
 
