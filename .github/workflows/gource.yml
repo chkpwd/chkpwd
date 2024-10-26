@@ -50,7 +50,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: gource
-          path: ./gource/${{ matrix.repo.name }}-gource.zip
+          path: ./gource/gource.mp4
 
   commit-gource:
     name: Commit Gource
