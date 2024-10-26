@@ -1,0 +1,25 @@
+name: Gource Action for all repositories
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repositories Action (flat)
+        id: get-repos
+        uses: raven-actions/get-repos@v1
+        with:
+          format: json
+      - name: Repos
+        run: |
+          echo "Total count: ${COUNT}"
+          echo "Format: ${FORMAT}"
+          echo "Repos:"
+          echo "${REPOS}"
+        env:
+          REPOS: ${{ steps.get-repos.outputs.repos }}
+          COUNT: ${{ steps.get-repos.outputs.count }}
+          FORMAT: ${{ steps.get-repos.outputs.format }}
