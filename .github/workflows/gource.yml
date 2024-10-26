@@ -13,6 +13,7 @@ jobs:
         uses: raven-actions/get-repos@v1
         with:
           format: json
+          topics: 'plex'
       - name: Repos
         run: |
           echo "Total count: ${COUNT}"
