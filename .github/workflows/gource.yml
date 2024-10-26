@@ -1,14 +1,22 @@
 name: Gource Action for all repositories
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      push:
+        description: 'Run the workflow'
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   get-repos:
     runs-on: ubuntu-latest
+    outputs:
+      repos: ${{ steps.get-repos.outputs.repos }}
     steps:
-      - name: Get Repositories Action (flat)
+      - name: Get Repositories Action
         id: get-repos
         uses: raven-actions/get-repos@v1
         with:
@@ -42,7 +50,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: gource
-          path: ./gource/${{ matrix.repo.name }}-gource.mp4
+          path: ./gource/${{ matrix.repo.name }}-gource.zip
 
   commit-gource:
     name: Commit Gource
