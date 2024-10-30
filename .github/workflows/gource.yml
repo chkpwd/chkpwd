@@ -49,18 +49,40 @@ jobs:
           avatars_auto_fetch: true
       - uses: actions/upload-artifact@v4
         with:
-          name: gource
+          name: gource-mp4-${{ github.run_number }}
           path: ./gource/gource.mp4
+
+  convert-mp4-to-gif:
+    name: Convert MP4 to GIF
+    runs-on: ubuntu-latest
+    needs: [run-gource]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: gource-mp4-${{ github.run_number }}
+          path: ./gource
+      - name: Setup FFmpeg
+        run: |
+          sudo apt update -y && \
+          sudo apt install -y ffmpeg
+      - name: Convert MP4 to GIF
+        run: |
+          ffmpeg -t 5 -i ./gource/gource.mp4 \
+            -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+            -loop 0 ./gource/gource.gif
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gource-gif-${{ github.run_number }}
+          path: ./gource/gource.gif
 
   commit-gource:
     name: Commit Gource
     if: ${{ needs.get-repos.outputs.repos != '[]' }}
-    needs: [run-gource]
+    needs: [get-repos, run-gource, convert-mp4-to-gif]
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        gources: ${{ fromJson(needs.get-repos.outputs.repos) }}
 
     permissions:
       contents: write
@@ -73,23 +95,20 @@ jobs:
       - name: Download Gource artifacts
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.gources.name }}-artifact-${{ github.run_number }}
-          path: ./${{ matrix.gources.name }}
+          name: gource-gif-${{ github.run_number }}
 
-      - name: Move Gource
+      - name: Add GIF to README.md
         run: |
-          mv ${{ matrix.gources.name }}/* .
-
-      - name: Unzip Gource
-        run: |
-          unzip ${{ matrix.gources.name }}.zip
+          mkdir -p assets
+          mv gource.gif assets/gource.gif
+          echo "![gource](assets/gource.gif)" >> README.md
 
       - name: Commit files
         id: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.mp4
+          git add README.md assets/gource.gif
           if [ -z "$(git status --porcelain)" ]; then
             echo "push=false" >> $GITHUB_OUTPUT
           else
