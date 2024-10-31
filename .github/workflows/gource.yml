@@ -46,7 +46,6 @@ jobs:
           logo_url: 'https://github.com/git.png'
           gource_resolution: '1080p'
           gource_fps: 60
-          gource_font_size: 40
           avatars_auto_fetch: true
           gource_background_color: '0D1116'
           gource_overlay_background_color: '0D1116'
