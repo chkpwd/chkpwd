@@ -42,15 +42,15 @@ jobs:
         uses: nbprojekt/gource-action@v1
         with:
           git_url: 'https://github.com/${{ matrix.repo.full_name }}'
-          gource_title: '${{ matrix.repo.name }} gource'
+          gource_title: '${{ matrix.repo.name }} Repository'
           logo_url: 'https://github.com/git.png'
           gource_resolution: '1080p'
           gource_fps: 60
           avatars_auto_fetch: true
           gource_background_color: '0D1116'
           gource_overlay_background_color: '0D1116'
-          gource_font_size: 60
-          gource_hide_items: mouse,date,filenames,dirnames
+          gource_font_size: 80
+          gource_hide_items: 'mouse,progress,date,filenames,dirnames'
       - uses: actions/upload-artifact@v4
         with:
           name: gource-mp4-${{ github.run_number }}
