@@ -21,7 +21,7 @@ jobs:
         uses: raven-actions/get-repos@v1
         with:
           format: json
-          topics: 'gource'
+          topics: 'run-gif-generator-chk'
 
   run-gource:
     name: Run Gource Action
@@ -101,7 +101,7 @@ jobs:
         run: |
           mkdir -p assets
           mv gource.gif assets/gource.gif
-          echo "![gource](assets/gource.gif)" >> README.md
+          echo "\n## Most recent gource:\n![gource](assets/gource.gif)" >> README.md
 
       - name: Commit files
         id: commit
