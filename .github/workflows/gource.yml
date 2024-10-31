@@ -50,6 +50,8 @@ jobs:
           avatars_auto_fetch: true
           gource_background_color: '0D1116'
           gource_overlay_background_color: '0D1116'
+          gource_font_size: 60
+          gource_hide_items: mouse,date,filenames,dirnames
       - uses: actions/upload-artifact@v4
         with:
           name: gource-mp4-${{ github.run_number }}
