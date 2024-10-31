@@ -12,6 +12,7 @@ on:
 
 jobs:
   get-repos:
+    name: Get Repos
     runs-on: ubuntu-latest
     outputs:
       repos: ${{ steps.get-repos.outputs.repos }}
