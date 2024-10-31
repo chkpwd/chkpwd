@@ -3,3 +3,4 @@
 💼 LinkedIn: [Bryan Jones](https://www.linkedin.com/in/bryan-jones-693348252)
 
 Discord: **chkpwd**
+![gource](assets/gource.gif)
