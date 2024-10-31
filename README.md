@@ -4,3 +4,4 @@
 
 Discord: **chkpwd**
 ![gource](assets/gource.gif)
+\n## Most recent gource:\n![gource](assets/gource.gif)
