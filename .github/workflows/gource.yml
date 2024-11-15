@@ -38,7 +38,7 @@ jobs:
         uses: nbprojekt/gource-action@v1
         with:
           git_url: 'https://github.com/${{ matrix.repo.full_name }}'
-          gource_title: '${{ matrix.repo.name }} Repository'
+          gource_title: '${{ matrix.repo.name }} repo'
           logo_url: 'https://github.com/git.png'
           gource_resolution: '1080p'
           gource_fps: 60
