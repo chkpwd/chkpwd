@@ -3,12 +3,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-    inputs:
-      push:
-        description: 'Run the workflow'
-        required: false
-        type: boolean
-        default: true
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   get-repos:
