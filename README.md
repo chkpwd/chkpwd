@@ -7,7 +7,7 @@
 
 ## About me
 
-Hi there 👋, I’m Bryan Jones, a skilled and results-driven System Engineer with a strong background in Automation and a passion for Infrastructure as Code. After my 9to5, catch me writing custom solutions for various applications.
+👋, I’m Bryan Jones, a skilled and results-driven System Engineer with a strong background in Automation and a passion for Infrastructure as Code. After my 9to5, catch me writing custom solutions for various applications.
 
 ## Where to reach me :coffee:
 
