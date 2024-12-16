@@ -7,38 +7,24 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  get-repos:
-    name: Get Repos
-    runs-on: ubuntu-latest
-    outputs:
-      repos: ${{ steps.get-repos.outputs.repos }}
-    steps:
-      - name: Get Repositories Action
-        id: get-repos
-        uses: raven-actions/get-repos@v1
-        with:
-          format: json
-          topics: 'run-gif-generator-chk'
-
   run-gource:
     name: Run Gource Action
-    if: ${{ needs.get-repos.outputs.repos != '[]' }}
     runs-on: ubuntu-latest
     needs: [get-repos]
     strategy:
-      matrix:
-        repo: ${{ fromJson(needs.get-repos.outputs.repos) }}
       fail-fast: false
+    env:
+      git_ref: "chkpwd/iac"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: ${{ matrix.repo.full_name }}
+          repository: ${{ env.git_ref }}
       - name: 'Gource Action'
         uses: nbprojekt/gource-action@v1
         with:
-          git_url: 'https://github.com/${{ matrix.repo.full_name }}'
-          gource_title: '${{ matrix.repo.name }} repo'
+          git_url: 'https://github.com/${{ env.git_ref }}'
+          gource_title: 'IaC Repo'
           logo_url: 'https://github.com/git.png'
           gource_resolution: '1080p'
           gource_fps: 60
@@ -80,7 +66,6 @@ jobs:
 
   commit-gource:
     name: Commit Gource
-    if: ${{ needs.get-repos.outputs.repos != '[]' }}
     needs: [get-repos, run-gource, convert-mp4-to-gif]
     runs-on: ubuntu-latest
 
