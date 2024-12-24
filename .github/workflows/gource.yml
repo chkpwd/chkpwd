@@ -62,8 +62,8 @@ jobs:
           sudo apt install -y ffmpeg
       - name: Convert MP4 to GIF
         run: |
-          ffmpeg -t 5 -i ./gource/gource.mp4 \
-            -vf "fps=10,scale=530:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+          ffmpeg -i ./gource/gource.mp4 \
+            -vf "fps=15,scale=530:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
             -loop 0 ./gource/gource.gif
       - uses: actions/upload-artifact@v4
         with:
