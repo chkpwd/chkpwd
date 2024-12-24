@@ -38,7 +38,7 @@ jobs:
           gource_background_color: 0D1116
           gource_overlay_background_color: 0D1116
           gource_font_size: 80
-          gource_hide_items: mouse,progress,dirnames
+          gource_hide_items: mouse,progress,dirnames,date
       - uses: actions/upload-artifact@v4
         with:
           name: gource-mp4-${{ github.run_number }}
