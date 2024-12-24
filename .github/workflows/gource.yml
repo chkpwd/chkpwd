@@ -16,18 +16,20 @@ jobs:
       git_ref: "chkpwd/iac"
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ env.git_ref }}
       - name: 'Gource Action'
-        uses: nbprojekt/gource-action@v1
+        uses: nbprojekt/gource-action@v1.3.0
         with:
-          git_url: https://github.com/${{ env.git_ref }}
+          git_url: https://github.com/chkpwd/dotfiles
           gource_title: IaC Repo
           logo_url: https://github.com/git.png
           gource_resolution: 1080p
           gource_fps: 60
           avatars_auto_fetch: true
+          gource_bloom_intensity: 0.5
+          gource_bloom_multiplier: 0.5
           gource_auto_skip_seconds: 0.1
           gource_camera_mode: track
           gource_filename_time: 2
