@@ -13,5 +13,5 @@
 
 - 📧 Email: [mail@chkpwd.com](mailto:mail@chkpwd.com)
 - 💼 LinkedIn: [Bryan Jones](https://www.linkedin.com/in/bryan-jones-693348252)
-- 🗨️ Discord: [chkpwd](discordapp.com/users/115894081342799875)
+- 🗨️ Discord: [chkpwd](https://discordapp.com/users/115894081342799875)
 - 🌐 Website: [chkpwd.com](https://chkpwd.com)
