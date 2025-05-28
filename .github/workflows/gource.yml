@@ -5,20 +5,13 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-
 jobs:
   run-gource:
     name: Run Gource Action
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    env:
-      git_ref: "chkpwd/iac"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.git_ref }}
       - name: 'Gource Action'
         uses: nbprojekt/gource-action@v1.3.0
         with:
@@ -74,25 +67,20 @@ jobs:
     name: Commit Gource
     needs: [run-gource, convert-mp4-to-gif]
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
-
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-
       - name: Download Gource artifacts
         uses: actions/download-artifact@v4
         with:
           name: gource-gif-${{ github.run_number }}
-
       - name: Add GIF to README.md
         run: |
           mkdir -p assets
           mv gource.gif assets/gource.gif
-
       - name: Commit files
         id: commit
         run: |
@@ -105,7 +93,6 @@ jobs:
             git commit -m "Add new gource" -a
             echo "push=true" >> $GITHUB_OUTPUT
           fi
-
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
