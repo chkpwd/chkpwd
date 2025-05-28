@@ -15,7 +15,7 @@ jobs:
       - name: 'Gource Action'
         uses: nbprojekt/gource-action@v1.3.0
         with:
-          git_url: https://github.com/chkpwd/dotfiles
+          git_url: https://github.com/chkpwd/iac
           gource_title: IaC Repo
           logo_url: https://github.com/git.png
           gource_resolution: 1080p
