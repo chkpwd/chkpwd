@@ -9,8 +9,6 @@ jobs:
   run-gource:
     name: Run Gource Action
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
       - name: 'Gource Action'
         uses: nbprojekt/gource-action@v1.3.0
@@ -36,7 +34,6 @@ jobs:
         with:
           name: gource-mp4-${{ github.run_number }}
           path: ./gource/gource.mp4
-
   convert-mp4-to-gif:
     name: Convert MP4 to GIF
     runs-on: ubuntu-latest
@@ -62,7 +59,6 @@ jobs:
         with:
           name: gource-gif-${{ github.run_number }}
           path: ./gource/gource.gif
-
   commit-gource:
     name: Commit Gource
     needs: [run-gource, convert-mp4-to-gif]
