@@ -14,7 +14,6 @@ jobs:
         uses: nbprojekt/gource-action@v1.3.0
         with:
           git_url: https://github.com/chkpwd/iac
-          avatars_url: https://cdn.jsdelivr.net/gh/alohe/memojis/png/notion_14.png
           gource_title: IaC Repo
           logo_url: https://github.com/git.png
           gource_resolution: 1080p
