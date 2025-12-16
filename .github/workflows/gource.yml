@@ -30,7 +30,7 @@ jobs:
           gource_overlay_background_color: 0D1116
           gource_font_size: 80
           gource_hide_items: mouse,progress,dirnames,date
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: gource-mp4-${{ github.run_number }}
           path: ./gource/gource.mp4
@@ -55,7 +55,7 @@ jobs:
           ffmpeg -i ./gource/gource.mp4 \
             -vf "fps=15,scale=530:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
             -loop 0 ./gource/gource.gif
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: gource-gif-${{ github.run_number }}
           path: ./gource/gource.gif
